@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "predeploy": "npm run build",
+    "build:pages": "vite build --base=/manohar-portfolio/",
+    "predeploy": "npm run build:pages",
     "deploy": "gh-pages -d dist",
     "lint": "eslint .",
     "preview": "vite preview"
