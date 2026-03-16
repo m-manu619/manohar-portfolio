@@ -1,12 +1,40 @@
-# React + Vite
+# Manohar Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal portfolio built with React and Vite to showcase experience, skills, projects, certifications, and contact information.
 
-Currently, two official plugins are available:
+## Live Links
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Vercel: [https://manohar-portfolio-rho.vercel.app/](https://manohar-portfolio-rho.vercel.app/)
+- GitHub Pages: [https://m-manu619.github.io/manohar-portfolio](https://m-manu619.github.io/manohar-portfolio)
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- Vite
+- CSS
+- Lucide React
+
+## Local Development
+
+```bash
+npm install
+npm run dev
+```
+
+## Production Build
+
+For the standard production build used by Vercel:
+
+```bash
+npm run build
+```
+
+## GitHub Pages Deploy
+
+This project includes a dedicated GitHub Pages build path.
+
+```bash
+npm run deploy
+```
+
+That command builds the site with the correct GitHub Pages base path and publishes the `dist` folder to the `gh-pages` branch.
