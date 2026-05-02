@@ -328,6 +328,13 @@ img { max-width: 100%; display: block; }
 }
 .skill-chip:hover { transform: translateY(-2px); border-color: rgba(144, 242, 195, 0.22); background: rgba(144, 242, 195, 0.08); }
 .skill-chip img { width: 1.3rem; height: 1.3rem; object-fit: contain; }
+.skill-chip-info { display: flex; flex-direction: column; gap: 0.2rem; }
+.skill-dots { display: flex; gap: 3px; }
+.skill-dot {
+  width: 5px; height: 5px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+}
+.skill-dot-filled { background: var(--accent); }
 
 /* ── Projects ── */
 .projects-grid { display: grid; gap: 1.2rem; }

@@ -129,40 +129,41 @@ const navigation = [
   { id: 'contact', label: 'Contact' },
 ];
 
+// level: 1 = Intermediate · 2 = Advanced · 3 = Expert
 const skills = [
   {
     title: 'Programming',
     items: [
-      { name: 'Java', icon: javaIcon },
-      { name: 'Python', icon: pythonIcon },
+      { name: 'Java',   icon: javaIcon,   level: 2 },
+      { name: 'Python', icon: pythonIcon, level: 2 },
     ],
   },
   {
     title: 'Frontend',
     items: [
-      { name: 'HTML', icon: htmlIcon },
-      { name: 'CSS', icon: cssIcon },
-      { name: 'JavaScript', icon: javascriptIcon },
-      { name: 'React', icon: reactIcon },
+      { name: 'HTML',       icon: htmlIcon,       level: 3 },
+      { name: 'CSS',        icon: cssIcon,        level: 3 },
+      { name: 'JavaScript', icon: javascriptIcon, level: 3 },
+      { name: 'React',      icon: reactIcon,      level: 2 },
     ],
   },
   {
     title: 'Backend & Data',
     items: [
-      { name: 'Spring Boot', icon: springbootIcon },
-      { name: 'MySQL', icon: mysqlIcon },
-      { name: 'PostgreSQL', icon: postgresqlIcon },
+      { name: 'Spring Boot', icon: springbootIcon, level: 2 },
+      { name: 'MySQL',       icon: mysqlIcon,      level: 2 },
+      { name: 'PostgreSQL',  icon: postgresqlIcon, level: 2 },
     ],
   },
   {
     title: 'Cloud & DevOps',
     items: [
-      { name: 'AWS', icon: awsIcon },
-      { name: 'Docker', icon: dockerIcon },
-      { name: 'Jenkins', icon: jenkinsIcon },
-      { name: 'Terraform', icon: terraformIcon },
-      { name: 'Git', icon: gitIcon },
-      { name: 'GitHub', icon: githubIcon },
+      { name: 'AWS',       icon: awsIcon,       level: 3 },
+      { name: 'Docker',    icon: dockerIcon,    level: 3 },
+      { name: 'Jenkins',   icon: jenkinsIcon,   level: 2 },
+      { name: 'Terraform', icon: terraformIcon, level: 2 },
+      { name: 'Git',       icon: gitIcon,       level: 3 },
+      { name: 'GitHub',    icon: githubIcon,    level: 3 },
     ],
   },
 ];
@@ -418,7 +419,7 @@ function App() {
               <div className="profile-showcase">
                 <div className="profile-ring" />
                 <div className="profile-frame">
-                  <img src={profilePhoto} alt="Portrait of Manohar H" className="profile-photo" />
+                  <img src={profilePhoto} alt="Portrait of Manohar H" className="profile-photo" fetchpriority="high" decoding="async" />
                 </div>
                 <div className="profile-badge">
                   <span>Available for software roles</span>
@@ -537,7 +538,14 @@ function App() {
                     {category.items.map((skill) => (
                       <motion.div key={skill.name} variants={staggerItem} className="skill-chip">
                         <img src={skill.icon} alt={skill.name} />
-                        <span>{skill.name}</span>
+                        <div className="skill-chip-info">
+                          <span>{skill.name}</span>
+                          <div className="skill-dots" aria-label={['Intermediate','Advanced','Expert'][skill.level - 1]}>
+                            {[1, 2, 3].map((d) => (
+                              <span key={d} className={d <= skill.level ? 'skill-dot skill-dot-filled' : 'skill-dot'} />
+                            ))}
+                          </div>
+                        </div>
                       </motion.div>
                     ))}
                   </motion.div>
@@ -558,7 +566,7 @@ function App() {
               {projects.map((project) => (
                 <motion.article key={project.title} variants={staggerItem} className="project-card">
                   <a href={project.github} target="_blank" rel="noreferrer" className="project-visual" aria-label={`View ${project.title} on GitHub`}>
-                    <img src={project.image} alt={project.title} />
+                    <img src={project.image} alt={project.title} loading="lazy" decoding="async" />
                     <div className="project-image-overlay">
                       <span>View on GitHub <ExternalLink size={14} /></span>
                     </div>
