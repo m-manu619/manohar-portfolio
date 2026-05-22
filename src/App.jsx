@@ -448,11 +448,24 @@ function App() {
           </div>
         </section>
 
+        {/* ── Marquee strip ── */}
+        <div className="marquee-wrap" aria-hidden="true">
+          <div className="marquee-track">
+            {['AWS', 'Docker', 'Terraform', 'Spring Boot', 'CI/CD', 'Java', 'Python', 'React', 'Jenkins', 'PostgreSQL', 'DevOps', 'GitHub Actions'].concat(
+              ['AWS', 'Docker', 'Terraform', 'Spring Boot', 'CI/CD', 'Java', 'Python', 'React', 'Jenkins', 'PostgreSQL', 'DevOps', 'GitHub Actions']
+            ).map((item, i) => (
+              <span key={i} className="marquee-item">
+                <span className="marquee-star">✦</span>{item}
+              </span>
+            ))}
+          </div>
+        </div>
+
         {/* ── About ── */}
-        <section id="about" className="content-section">
+        <section id="about" className="content-section section-accent">
           <motion.div className="container section-layout" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-10%' }}>
             <motion.div variants={fadeUp} className="section-heading">
-              <span>About</span>
+              <span className="section-label"><span className="section-label-star">✦</span> About</span>
               <h2>Software engineer bridging cloud infrastructure, backend systems, and DevOps automation.</h2>
             </motion.div>
             <div className="about-grid">
@@ -496,7 +509,7 @@ function App() {
         <section id="experience" className="content-section">
           <motion.div className="container section-layout" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-10%' }}>
             <motion.div variants={fadeUp} className="section-heading">
-              <span>Experience</span>
+              <span className="section-label"><span className="section-label-star">✦</span> Experience</span>
               <h2>Two years of industry experience across AWS, backend engineering, and CI/CD delivery.</h2>
             </motion.div>
             <div className="timeline">
@@ -527,7 +540,7 @@ function App() {
         <section id="skills" className="content-section">
           <motion.div className="container section-layout" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-10%' }}>
             <motion.div variants={fadeUp} className="section-heading">
-              <span>Skills</span>
+              <span className="section-label"><span className="section-label-star">✦</span> Skills</span>
               <h2>A full-stack toolkit built for cloud-native development and reliable software delivery.</h2>
             </motion.div>
             <motion.div variants={staggerContainer} className="skills-grid">
@@ -559,7 +572,7 @@ function App() {
         <section id="projects" className="content-section">
           <motion.div className="container section-layout" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-10%' }}>
             <motion.div variants={fadeUp} className="section-heading">
-              <span>Projects</span>
+              <span className="section-label"><span className="section-label-star">✦</span> Projects</span>
               <h2>End-to-end projects spanning AI automation, cloud infrastructure, and DevOps pipelines.</h2>
             </motion.div>
             <div className="projects-grid">
@@ -600,7 +613,7 @@ function App() {
         <section id="certifications" className="content-section">
           <motion.div className="container section-layout" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-10%' }}>
             <motion.div variants={fadeUp} className="section-heading">
-              <span>Certifications</span>
+              <span className="section-label"><span className="section-label-star">✦</span> Certifications</span>
               <h2>Continuous learning across cloud architecture, machine learning, and data analytics.</h2>
             </motion.div>
             <motion.div variants={staggerContainer} className="cert-grid">
@@ -615,10 +628,10 @@ function App() {
         </section>
 
         {/* ── Contact ── */}
-        <section id="contact" className="content-section content-section-last">
+        <section id="contact" className="content-section content-section-last section-light">
           <motion.div className="container section-layout" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-10%' }}>
             <motion.div variants={fadeUp} className="section-heading">
-              <span>Contact</span>
+              <span className="section-label"><span className="section-label-star">✦</span> Contact</span>
               <h2>Let&apos;s talk — I&apos;m actively looking for software, cloud, and DevOps roles.</h2>
             </motion.div>
             <motion.div variants={staggerItem} className="contact-band">

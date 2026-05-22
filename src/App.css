@@ -410,7 +410,7 @@ img { max-width: 100%; display: block; }
 .hero-card, .panel, .contact-band { border-radius: var(--radius-xl); }
 
 .hero-card-main { padding: 1.75rem; }
-.hero-card-label, .panel-kicker, .section-heading span {
+.hero-card-label, .panel-kicker {
   text-transform: uppercase; letter-spacing: 0.15em;
   font-size: 0.74rem; color: var(--accent); font-weight: 700;
 }
@@ -448,6 +448,127 @@ img { max-width: 100%; display: block; }
   filter: drop-shadow(0 0 12px rgba(110,231,183,0.3));
 }
 .stat-card span { display: block; margin-top: 0.3rem; color: var(--muted); font-size: 0.86rem; }
+
+/* ── Marquee strip ──────────────────────────────────────────────────────────── */
+.marquee-wrap {
+  width: 100%; overflow: hidden;
+  border-top: 1px solid rgba(110,231,183,0.12);
+  border-bottom: 1px solid rgba(110,231,183,0.12);
+  background: rgba(110,231,183,0.04);
+  padding: 0.85rem 0;
+  position: relative; z-index: 1;
+}
+.marquee-wrap::before,
+.marquee-wrap::after {
+  content: '';
+  position: absolute; top: 0; bottom: 0; width: 8rem; z-index: 2;
+  pointer-events: none;
+}
+.marquee-wrap::before { left:  0; background: linear-gradient(90deg, var(--bg), transparent); }
+.marquee-wrap::after  { right: 0; background: linear-gradient(-90deg, var(--bg), transparent); }
+.marquee-track {
+  display: flex; gap: 0; width: max-content;
+  animation: marquee-scroll 28s linear infinite;
+}
+.marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-item {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0 2rem;
+  font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted);
+  white-space: nowrap;
+  transition: color 200ms ease;
+}
+.marquee-item:hover { color: var(--accent); }
+.marquee-star {
+  color: var(--accent); font-size: 0.65rem;
+  opacity: 0.7;
+}
+
+/* ── Section accent (about — mint tint block) ─────────────────────────────── */
+.section-accent {
+  position: relative;
+}
+.section-accent::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(110,231,183,0.07) 0%, transparent 70%),
+    linear-gradient(135deg, rgba(110,231,183,0.04) 0%, transparent 60%);
+  border-top: 1px solid rgba(110,231,183,0.1);
+  border-bottom: 1px solid rgba(110,231,183,0.08);
+  pointer-events: none; z-index: 0;
+}
+
+/* ── Section light (contact — contrast flip) ─────────────────────────────── */
+.section-light {
+  position: relative;
+  background: linear-gradient(160deg, #e8f4f0 0%, #f0f6f3 40%, #e4f0ec 100%);
+}
+.section-light::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none; z-index: 0;
+}
+.section-light .section-heading h2 {
+  background: linear-gradient(135deg, #0d1f18 0%, #1a3d2e 70%, #0a4d35 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; color: transparent;
+}
+.section-light .section-label { color: #0a7a4a; }
+.section-light .section-label-star { color: #0a7a4a; }
+.section-light .contact-band {
+  background: rgba(255,255,255,0.7);
+  border-color: rgba(0,0,0,0.08);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  color: #0d1a14;
+}
+.section-light .contact-band p { color: #2d4a3e; }
+.section-light .contact-band:hover { border-color: rgba(10,122,74,0.25); }
+.section-light .contact-link {
+  border-color: rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.6);
+  color: #0d1a14;
+}
+.section-light .contact-link:hover {
+  border-color: rgba(10,122,74,0.4);
+  background: rgba(10,122,74,0.08);
+  color: #0a4d35;
+}
+.section-light .form-input {
+  background: rgba(255,255,255,0.7);
+  border-color: rgba(0,0,0,0.12);
+  color: #0d1a14;
+}
+.section-light .form-input::placeholder { color: #6b8c7e; }
+.section-light .form-input:focus {
+  border-color: rgba(10,122,74,0.5);
+  box-shadow: 0 0 0 3px rgba(10,122,74,0.1);
+}
+.section-light .site-glow { display: none; }
+
+/* ── Section label with star ─────────────────────────────────────────────── */
+.section-label {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  text-transform: uppercase; letter-spacing: 0.15em;
+  font-size: 0.74rem; color: var(--accent); font-weight: 700;
+}
+.section-label-star {
+  font-size: 0.7rem; color: var(--accent);
+  display: inline-block;
+  animation: star-spin 8s linear infinite;
+}
+@keyframes star-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
 
 /* ── Sections ───────────────────────────────────────────────────────────────── */
 .content-section      { padding: 2rem 0; }
