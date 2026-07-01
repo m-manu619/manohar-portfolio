@@ -186,6 +186,12 @@ const projects = [
     image: iplRetentionImage,
     github: 'https://github.com/m-manu619/ipl-2027-retention-simulator',
     demo: null,
+    categories: ['Frontend'],
+    details: [
+      'Dynamic salary cap tracking (Rs 120 Crore) with real-time budget depletion alerts.',
+      'Supports RTM (Right to Match) logic rules and maximum player retention limits.',
+      'High-fidelity HTML-to-image canvas generation for immediate social sharing.'
+    ],
   },
   {
     title: 'Pro Cricket Auction Manager',
@@ -197,6 +203,12 @@ const projects = [
     github: 'https://github.com/m-manu619/Pro_Cricket_Auction_Manager',
     demo: null,
     inProgress: true,
+    categories: ['Frontend', 'Backend'],
+    details: [
+      'Synchronized WebSockets bidding room with active user lobbies and bidding state machines.',
+      'Algorithmic AI franchises bidding dynamically based on budget constraints and squad needs.',
+      'Responsive concurrency handling with optimistic locking and Spring Boot backend.'
+    ],
   },
   {
     title: 'Viberent Booking Platform',
@@ -207,6 +219,12 @@ const projects = [
     image: viberentBookingImage,
     github: 'https://github.com/m-manu619/viberent-booking-platform',
     demo: null,
+    categories: ['Frontend', 'Backend'],
+    details: [
+      'Role-based page authorization (Admin / Guest / Vendor) using secure JWT tokens.',
+      'Interactive booking calendars with real-time property availability validation.',
+      'Relational database schema in MySQL mapping bookings, properties, and users.'
+    ],
   },
   {
     title: 'AI-Powered Resume Screener & Job Matcher',
@@ -217,6 +235,12 @@ const projects = [
     image: aiResumeToolImage,
     github: 'https://github.com/m-manu619/ai-resume-screening-job-matching-tool',
     demo: null,
+    categories: ['AI & Analytics', 'Frontend', 'Backend'],
+    details: [
+      'NLP parsing using spaCy to extract technical skills and structural text from PDF resumes.',
+      'Semantic similarity matching scoring based on Hugging Face sentence transformers.',
+      'FastAPI backend exposing REST endpoints for file uploads and JSON match score responses.'
+    ],
   },
   {
     title: 'Cloud File Management System',
@@ -227,6 +251,12 @@ const projects = [
     image: cloudFileImage,
     github: 'https://github.com/m-manu619/Cloud_File_Management_System',
     demo: null,
+    categories: ['Backend', 'DevOps & Cloud'],
+    details: [
+      'Secure file upload/download pipelines interacting with AWS S3 storage buckets.',
+      'Role-based file permission access control policies via Amazon IAM.',
+      'Robust file metadata indexing using Amazon DynamoDB document storage.'
+    ],
   },
   {
     title: 'IPL 2026 Simulator',
@@ -237,6 +267,12 @@ const projects = [
     image: ipl2026Image,
     github: 'https://github.com/m-manu619/ipl-2026-simulator',
     demo: null,
+    categories: ['Frontend', 'AI & Analytics'],
+    details: [
+      'Client-side Monte Carlo simulations running 10,000+ tournament seasons in under 800ms.',
+      'Interactive points race line chart tracking qualification thresholds dynamically.',
+      'Reactive UI transitions reflecting game simulation events and live net run rate modifications.'
+    ],
   },
   {
     title: 'Flask App CI/CD Pipeline on AWS',
@@ -247,6 +283,12 @@ const projects = [
     image: flaskCicdImage,
     github: 'https://github.com/m-manu619/Flask-App-CI-CD-Pipeline-on-AWS-using-CodePipeline-ECS-and-Docker',
     demo: null,
+    categories: ['DevOps & Cloud'],
+    details: [
+      'Dockerized Flask web container build templates optimized for small foot-print size.',
+      'Multi-stage automated pipeline via AWS CodePipeline, ECR, and ECS.',
+      'Continuous integration triggers integrated with GitHub Webhooks and GitHub Actions.'
+    ],
   },
   {
     title: 'Terraform AWS Infrastructure',
@@ -257,6 +299,12 @@ const projects = [
     image: terraformImage,
     github: 'https://github.com/m-manu619/terraform-aws-project',
     demo: null,
+    categories: ['DevOps & Cloud'],
+    details: [
+      'Declarative infrastructure as code provisioning VPC, Subnets, EC2, RDS, and Route53.',
+      'State locking synchronization using AWS S3 backend with DynamoDB tables.',
+      'Modular directory structure separating development, staging, and production environments.'
+    ],
   },
   {
     title: 'Jenkins Declarative CI/CD Pipeline',
@@ -267,6 +315,12 @@ const projects = [
     image: jenkinsPipelineImage,
     github: 'https://github.com/m-manu619/jenkins',
     demo: null,
+    categories: ['DevOps & Cloud'],
+    details: [
+      'Standardized declarative Jenkinsfile implementing unit testing, lint check, and packaging.',
+      'Integrated with Docker agents to isolate compilation and test runtime runtimes.',
+      'Automated slack hook notifications triggered upon pipeline failures or success status.'
+    ],
   },
   {
     title: 'Full-Stack React Express Boilerplate',
@@ -277,6 +331,12 @@ const projects = [
     image: fullstackReactExpressImage,
     github: 'https://github.com/m-manu619/fullstack-react-express-app',
     demo: null,
+    categories: ['Frontend', 'Backend'],
+    details: [
+      'Reusable boilerplate architecture combining React client application with Express server.',
+      'Configured with CORS rules, JWT authentication, and DynamoDB document client query helpers.',
+      'Zero-configuration deployment patterns designed for serverless AWS Lambda hosting.'
+    ],
   },
 ];
 
@@ -327,6 +387,12 @@ function App() {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' });
   const [formSent, setFormSent] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [activeModalProject, setActiveModalProject] = useState(null);
+  const [formStatus, setFormStatus] = useState('idle');
+
+  const cursorRef = useRef(null);
+  const cursorRingRef = useRef(null);
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
@@ -353,31 +419,106 @@ function App() {
     return () => window.removeEventListener('scroll', handler);
   }, []);
 
+  useEffect(() => {
+    const moveCursor = (e) => {
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+      }
+      if (cursorRingRef.current) {
+        cursorRingRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+      }
+    };
+
+    const handleHoverStart = () => {
+      document.body.classList.add('cursor-hover');
+    };
+    const handleHoverEnd = () => {
+      document.body.classList.remove('cursor-hover');
+    };
+
+    window.addEventListener('mousemove', moveCursor);
+
+    const updateListeners = () => {
+      const interactives = document.querySelectorAll('a, button, input, textarea, .project-card, .filter-btn, .tag');
+      interactives.forEach((el) => {
+        el.addEventListener('mouseenter', handleHoverStart);
+        el.addEventListener('mouseleave', handleHoverEnd);
+      });
+    };
+
+    updateListeners();
+
+    const observer = new MutationObserver(updateListeners);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      window.removeEventListener('mousemove', moveCursor);
+      observer.disconnect();
+      const interactives = document.querySelectorAll('a, button, input, textarea, .project-card, .filter-btn, .tag');
+      interactives.forEach((el) => {
+        el.removeEventListener('mouseenter', handleHoverStart);
+        el.removeEventListener('mouseleave', handleHoverEnd);
+      });
+    };
+  }, []);
+
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     setActiveSection(id);
     setMenuOpen(false);
   };
 
-  const handleContactSubmit = (e) => {
+  const handleContactSubmit = async (e) => {
     e.preventDefault();
-    const { name, email, message } = contactForm;
-    const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
-    const body = encodeURIComponent(`From: ${name} <${email}>\n\n${message}`);
-    window.open(`mailto:mmanohar619@gmail.com?subject=${subject}&body=${body}`, '_blank');
-    setFormSent(true);
-    setContactForm({ name: '', email: '', message: '' });
-    setTimeout(() => setFormSent(false), 5000);
+    setFormStatus('submitting');
+
+    const payload = {
+      access_key: '636609b2-41ab-423c-9b5c-ac3d28f658e3',
+      name: contactForm.name,
+      email: contactForm.email,
+      message: contactForm.message,
+      subject: `New Portfolio Inquiry from ${contactForm.name}`,
+    };
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setFormStatus('success');
+        setContactForm({ name: '', email: '', message: '' });
+      } else {
+        setFormStatus('error');
+      }
+    } catch (err) {
+      console.error(err);
+      setFormStatus('error');
+    }
   };
 
   const handleFormChange = (e) =>
     setContactForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-  const activeProjects = projects.filter((p) => !p.inProgress);
-  const workingProjects = projects.filter((p) => p.inProgress);
+  const activeProjects = projects.filter((p) => {
+    const matchesCategory = selectedCategory === 'All' || p.categories.includes(selectedCategory);
+    return !p.inProgress && matchesCategory;
+  });
+  const workingProjects = projects.filter((p) => {
+    const matchesCategory = selectedCategory === 'All' || p.categories.includes(selectedCategory);
+    return p.inProgress && matchesCategory;
+  });
 
   return (
     <div className="site-shell">
+      <div className="cursor-dot" ref={cursorRef} />
+      <div className="cursor-ring" ref={cursorRingRef} />
       <motion.div className="scroll-progress" style={{ scaleX }} />
 
       <div className="site-glow site-glow-left" />
@@ -647,18 +788,46 @@ function App() {
               <span className="section-label"><span className="section-label-star">✦</span> Projects</span>
               <h2>End-to-end projects spanning AI automation, cloud infrastructure, and DevOps pipelines.</h2>
             </motion.div>
+
+            {/* Filter Tabs */}
+            <div className="filter-tabs">
+              {['All', 'Frontend', 'Backend', 'DevOps & Cloud', 'AI & Analytics'].map((cat) => (
+                <button
+                  key={cat}
+                  type="button"
+                  className={`filter-btn ${selectedCategory === cat ? 'active' : ''}`}
+                  onClick={() => setSelectedCategory(cat)}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
+            {workingProjects.length === 0 && activeProjects.length === 0 && (
+              <p style={{ textAlign: 'center', color: 'var(--muted)', marginTop: '2rem', fontStyle: 'italic' }}>
+                No projects found in this category.
+              </p>
+            )}
+
             {workingProjects.length > 0 && (
               <div className="projects-subsection">
                 <h3 className="projects-subsection-title">Currently Working On</h3>
                 <div className="projects-grid">
                   {workingProjects.map((project) => (
                     <motion.article key={project.title} variants={staggerItem} className="project-card">
-                      <a href={project.github} target="_blank" rel="noreferrer" className="project-visual" aria-label={`View ${project.title} on GitHub`}>
+                      <button
+                        type="button"
+                        className="project-visual"
+                        onClick={() => setActiveModalProject(project)}
+                        aria-label={`View details for ${project.title}`}
+                      >
                         <img src={project.image} alt={project.title} loading="lazy" decoding="async" />
                         <div className="project-image-overlay">
-                          <span>View on GitHub <ExternalLink size={14} /></span>
+                          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                            View Details <Sparkles size={14} />
+                          </span>
                         </div>
-                      </a>
+                      </button>
                       <div className="project-body">
                         <p className={`panel-kicker ${project.inProgress ? 'kicker-in-progress' : ''}`}>
                           {project.inProgress ? 'Currently working on' : 'Featured Project'}
@@ -670,12 +839,19 @@ function App() {
                           {project.tech.map((item) => <span key={item} className="tag">{item}</span>)}
                         </div>
                         <div className="project-actions">
+                          <button
+                            type="button"
+                            className="button button-primary"
+                            onClick={() => setActiveModalProject(project)}
+                          >
+                            Details
+                          </button>
                           <a href={project.github} target="_blank" rel="noreferrer" className="button button-secondary">
-                            <Github size={16} /> View Code
+                            <Github size={16} /> Code
                           </a>
                           {project.demo && (
                             <a href={project.demo} target="_blank" rel="noreferrer" className="button button-ghost">
-                              <ExternalLink size={16} /> Live Demo
+                              <ExternalLink size={16} /> Demo
                             </a>
                           )}
                         </div>
@@ -691,12 +867,19 @@ function App() {
               <div className="projects-grid">
                 {activeProjects.map((project) => (
                   <motion.article key={project.title} variants={staggerItem} className="project-card">
-                    <a href={project.github} target="_blank" rel="noreferrer" className="project-visual" aria-label={`View ${project.title} on GitHub`}>
+                    <button
+                      type="button"
+                      className="project-visual"
+                      onClick={() => setActiveModalProject(project)}
+                      aria-label={`View details for ${project.title}`}
+                    >
                       <img src={project.image} alt={project.title} loading="lazy" decoding="async" />
                       <div className="project-image-overlay">
-                        <span>View on GitHub <ExternalLink size={14} /></span>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                          View Details <Sparkles size={14} />
+                        </span>
                       </div>
-                    </a>
+                    </button>
                     <div className="project-body">
                       <p className={`panel-kicker ${project.inProgress ? 'kicker-in-progress' : ''}`}>
                         {project.inProgress ? 'Currently working on' : 'Featured Project'}
@@ -708,12 +891,19 @@ function App() {
                         {project.tech.map((item) => <span key={item} className="tag">{item}</span>)}
                       </div>
                       <div className="project-actions">
+                        <button
+                          type="button"
+                          className="button button-primary"
+                          onClick={() => setActiveModalProject(project)}
+                        >
+                          Details
+                        </button>
                         <a href={project.github} target="_blank" rel="noreferrer" className="button button-secondary">
-                          <Github size={16} /> View Code
+                          <Github size={16} /> Code
                         </a>
                         {project.demo && (
                           <a href={project.demo} target="_blank" rel="noreferrer" className="button button-ghost">
-                            <ExternalLink size={16} /> Live Demo
+                            <ExternalLink size={16} /> Demo
                           </a>
                         )}
                       </div>
@@ -756,25 +946,31 @@ function App() {
                   I&apos;m currently open to full-time roles in software engineering, cloud, or
                   DevOps. Drop me a message — I respond within 24 hours.
                 </p>
-                <form className="contact-form" onSubmit={handleContactSubmit}>
-                  <div className="form-row">
-                    <input className="form-input" name="name" type="text" required placeholder="Your name" value={contactForm.name} onChange={handleFormChange} />
-                    <input className="form-input" name="email" type="email" required placeholder="Your email" value={contactForm.email} onChange={handleFormChange} />
+                {formStatus === 'success' ? (
+                  <div className="contact-success-box">
+                    <CheckCircle size={36} />
+                    <h3>Message Sent!</h3>
+                    <p>Thank you for reaching out. Your message has been sent directly to Manohar, and he will get back to you soon.</p>
                   </div>
-                  <textarea className="form-input form-textarea" name="message" required placeholder="Your message…" value={contactForm.message} onChange={handleFormChange} />
-                  <div>
-                    <button type="submit" className="button button-primary">
-                      <Send size={16} /> Send Message
-                    </button>
-                    <AnimatePresence>
-                      {formSent && (
-                        <motion.span className="form-sent-msg" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} style={{ display: 'inline-flex', marginLeft: '1rem' }}>
-                          <CheckCircle size={16} /> Opening your email client…
-                        </motion.span>
+                ) : (
+                  <form className="contact-form" onSubmit={handleContactSubmit}>
+                    <div className="form-row">
+                      <input className="form-input" name="name" type="text" required placeholder="Your name" value={contactForm.name} onChange={handleFormChange} />
+                      <input className="form-input" name="email" type="email" required placeholder="Your email" value={contactForm.email} onChange={handleFormChange} />
+                    </div>
+                    <textarea className="form-input form-textarea" name="message" required placeholder="Your message…" value={contactForm.message} onChange={handleFormChange} />
+                    <div>
+                      <button type="submit" className="button button-primary" disabled={formStatus === 'submitting'}>
+                        <Send size={16} /> {formStatus === 'submitting' ? 'Sending...' : 'Send Message'}
+                      </button>
+                      {formStatus === 'error' && (
+                        <span className="form-error-msg" style={{ display: 'inline-flex', marginLeft: '1rem', color: '#ef4444', fontSize: '0.88rem', fontWeight: 600 }}>
+                          Oops! Something went wrong. Please try again.
+                        </span>
                       )}
-                    </AnimatePresence>
-                  </div>
-                </form>
+                    </div>
+                  </form>
+                )}
               </div>
               <div className="contact-actions">
                 <a href="mailto:mmanohar619@gmail.com" className="contact-link"><Mail size={18} /> mmanohar619@gmail.com</a>
@@ -814,6 +1010,102 @@ function App() {
           >
             <ChevronUp size={20} />
           </motion.button>
+        )}
+      </AnimatePresence>
+
+      {/* ── Project Detail Modal ── */}
+      <AnimatePresence>
+        {activeModalProject && (
+          <motion.div
+            className="modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setActiveModalProject(null)}
+          >
+            <motion.div
+              className="modal-wrapper"
+              initial={{ scale: 0.9, y: 20, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.9, y: 20, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 220 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                className="modal-close-btn"
+                onClick={() => setActiveModalProject(null)}
+                aria-label="Close modal"
+              >
+                <X size={20} />
+              </button>
+
+              <img
+                src={activeModalProject.image}
+                alt={activeModalProject.title}
+                className="modal-image"
+              />
+
+              <div className="modal-body">
+                <div className="modal-header">
+                  <span className={`panel-kicker ${activeModalProject.inProgress ? 'kicker-in-progress' : ''}`}>
+                    {activeModalProject.inProgress ? 'Currently working on' : 'Featured Project'}
+                  </span>
+                  <h2>{activeModalProject.title}</h2>
+                  <div className="tag-row">
+                    {activeModalProject.tech.map((t) => (
+                      <span key={t} className="tag">{t}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="modal-section-title">Overview</div>
+                <p className="modal-description">{activeModalProject.description}</p>
+
+                {activeModalProject.details && (
+                  <>
+                    <div className="modal-section-title">Key Technical Details</div>
+                    <ul className="modal-highlights">
+                      {activeModalProject.details.map((d, idx) => (
+                        <li key={idx}>
+                          <CheckCircle size={16} />
+                          <span>{d}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+
+                <div className="modal-footer">
+                  <a
+                    href={activeModalProject.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="button button-primary"
+                  >
+                    <Github size={16} /> View Repository
+                  </a>
+                  {activeModalProject.demo && (
+                    <a
+                      href={activeModalProject.demo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="button button-secondary"
+                    >
+                      <ExternalLink size={16} /> Live Demo
+                    </a>
+                  )}
+                  <button
+                    type="button"
+                    className="button button-ghost"
+                    onClick={() => setActiveModalProject(null)}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>
