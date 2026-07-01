@@ -63,7 +63,7 @@ import jenkinsIcon from './images/icons8-jenkins-48.png';
 import terraformIcon from './images/icons8-terraform-48.png';
 import springbootIcon from './images/icons8-spring-boot-48.png';
 import viteIcon from './images/icons8-vite-48.png';
-import resume from './images/Manohar H Resume (Wing AI).pdf';
+import resume from './images/Manohar_H_Resume.pdf';
 
 // ── Animation variants ──────────────────────────────────────────────────────
 
