@@ -391,8 +391,6 @@ function App() {
   const [activeModalProject, setActiveModalProject] = useState(null);
   const [formStatus, setFormStatus] = useState('idle');
 
-  const cursorRef = useRef(null);
-  const cursorRingRef = useRef(null);
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
@@ -419,48 +417,6 @@ function App() {
     return () => window.removeEventListener('scroll', handler);
   }, []);
 
-  useEffect(() => {
-    const moveCursor = (e) => {
-      if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-      }
-      if (cursorRingRef.current) {
-        cursorRingRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-      }
-    };
-
-    const handleHoverStart = () => {
-      document.body.classList.add('cursor-hover');
-    };
-    const handleHoverEnd = () => {
-      document.body.classList.remove('cursor-hover');
-    };
-
-    window.addEventListener('mousemove', moveCursor);
-
-    const updateListeners = () => {
-      const interactives = document.querySelectorAll('a, button, input, textarea, .project-card, .filter-btn, .tag');
-      interactives.forEach((el) => {
-        el.addEventListener('mouseenter', handleHoverStart);
-        el.addEventListener('mouseleave', handleHoverEnd);
-      });
-    };
-
-    updateListeners();
-
-    const observer = new MutationObserver(updateListeners);
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    return () => {
-      window.removeEventListener('mousemove', moveCursor);
-      observer.disconnect();
-      const interactives = document.querySelectorAll('a, button, input, textarea, .project-card, .filter-btn, .tag');
-      interactives.forEach((el) => {
-        el.removeEventListener('mouseenter', handleHoverStart);
-        el.removeEventListener('mouseleave', handleHoverEnd);
-      });
-    };
-  }, []);
 
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -517,8 +473,6 @@ function App() {
 
   return (
     <div className="site-shell">
-      <div className="cursor-dot" ref={cursorRef} />
-      <div className="cursor-ring" ref={cursorRingRef} />
       <motion.div className="scroll-progress" style={{ scaleX }} />
 
       <div className="site-glow site-glow-left" />
