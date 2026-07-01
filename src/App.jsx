@@ -13,6 +13,10 @@ import {
   Briefcase,
   CheckCircle,
   ChevronUp,
+  Brain,
+  Code,
+  Cpu,
+  Database,
   Download,
   ExternalLink,
   Github,
@@ -23,8 +27,10 @@ import {
   Menu,
   Phone,
   Send,
+  Server,
   Sparkles,
   X,
+  Zap,
 } from 'lucide-react';
 import './App.css';
 
@@ -56,6 +62,7 @@ import dockerIcon from './images/icons8-docker-48.png';
 import jenkinsIcon from './images/icons8-jenkins-48.png';
 import terraformIcon from './images/icons8-terraform-48.png';
 import springbootIcon from './images/icons8-spring-boot-48.png';
+import viteIcon from './images/icons8-vite-48.png';
 import resume from './images/Manohar H Resume (Wing AI).pdf';
 
 // ── Animation variants ──────────────────────────────────────────────────────
@@ -144,6 +151,7 @@ const skills = [
     items: [
       { name: 'Java',   icon: javaIcon,   level: 2 },
       { name: 'Python', icon: pythonIcon, level: 2 },
+      { name: 'Vite',   icon: viteIcon,   level: 3 },
     ],
   },
   {
@@ -153,14 +161,19 @@ const skills = [
       { name: 'CSS',        icon: cssIcon,        level: 3 },
       { name: 'JavaScript', icon: javascriptIcon, level: 3 },
       { name: 'React',      icon: reactIcon,      level: 2 },
+      { name: 'GSAP',       level: 2,             fallbackIcon: <Sparkles size={20} /> },
     ],
   },
   {
     title: 'Backend & Data',
     items: [
       { name: 'Spring Boot', icon: springbootIcon, level: 2 },
+      { name: 'FastAPI',     level: 2,             fallbackIcon: <Server size={20} /> },
+      { name: 'Express.js',  level: 2,             fallbackIcon: <Server size={20} /> },
       { name: 'MySQL',       icon: mysqlIcon,      level: 2 },
       { name: 'PostgreSQL',  icon: postgresqlIcon, level: 2 },
+      { name: 'DynamoDB',    level: 2,             fallbackIcon: <Database size={20} /> },
+      { name: 'WebSockets',  level: 2,             fallbackIcon: <Zap size={20} /> },
     ],
   },
   {
@@ -172,6 +185,13 @@ const skills = [
       { name: 'Terraform', icon: terraformIcon, level: 2 },
       { name: 'Git',       icon: gitIcon,       level: 3 },
       { name: 'GitHub',    icon: githubIcon,    level: 3 },
+    ],
+  },
+  {
+    title: 'AI & Data Science',
+    items: [
+      { name: 'spaCy',            level: 2, fallbackIcon: <Brain size={20} /> },
+      { name: 'Machine Learning', level: 2, fallbackIcon: <Cpu size={20} /> },
     ],
   },
 ];
@@ -375,7 +395,7 @@ const certifications = [
 
 const stats = [
   { value: '2+', label: 'Years of experience' },
-  { value: '4', label: 'Featured technical projects' },
+  { value: `${projects.length}`, label: 'Featured technical projects' },
   { value: '40%', label: 'Deployment improvement delivered' },
 ];
 
@@ -717,7 +737,13 @@ function App() {
                   <motion.div className="skill-items" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
                     {category.items.map((skill) => (
                       <motion.div key={skill.name} variants={staggerItem} className="skill-chip">
-                        <img src={skill.icon} alt={skill.name} />
+                        {skill.icon ? (
+                          <img src={skill.icon} alt={skill.name} />
+                        ) : (
+                          <div className="skill-chip-fallback">
+                            {skill.fallbackIcon}
+                          </div>
+                        )}
                         <div className="skill-chip-info">
                           <span>{skill.name}</span>
                           <div className="skill-dots" aria-label={['Intermediate','Advanced','Expert'][skill.level - 1]}>
