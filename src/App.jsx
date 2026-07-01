@@ -605,8 +605,12 @@ function App() {
             <motion.aside className="hero-panel" variants={heroRight} initial="hidden" animate="visible">
               <div className="profile-showcase">
                 <div className="profile-ring" />
-                <div className="profile-frame">
-                  <img src={profilePhoto} alt="Portrait of Manohar H" className="profile-photo" fetchpriority="high" decoding="async" />
+                <div className="profile-frame" style={{ background: 'linear-gradient(160deg, rgba(16, 26, 46, 0.95), rgba(8, 14, 26, 0.95))', border: '1px dashed rgba(110, 231, 183, 0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.8rem', color: 'var(--accent)', textAlign: 'center', padding: '1rem' }}>
+                    <Code size={48} style={{ opacity: 0.85 }} />
+                    <span style={{ fontSize: '0.9rem', fontWeight: 600, letterSpacing: '0.05em', color: 'var(--text)' }}>&lt; MANOHAR.DEV &gt;</span>
+                    <span style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>Cloud & DevOps Engineering</span>
+                  </div>
                 </div>
                 <div className="profile-badge">
                   <span>Available for software roles</span>
