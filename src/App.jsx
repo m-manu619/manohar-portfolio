@@ -151,7 +151,6 @@ const skills = [
     items: [
       { name: 'Java',   icon: javaIcon,   level: 2 },
       { name: 'Python', icon: pythonIcon, level: 2 },
-      { name: 'Vite',   icon: viteIcon,   level: 3 },
     ],
   },
   {
@@ -161,6 +160,7 @@ const skills = [
       { name: 'CSS',        icon: cssIcon,        level: 3 },
       { name: 'JavaScript', icon: javascriptIcon, level: 3 },
       { name: 'React',      icon: reactIcon,      level: 2 },
+      { name: 'Vite',       icon: viteIcon,       level: 3 },
       { name: 'GSAP',       level: 2,             fallbackIcon: <Sparkles size={20} /> },
     ],
   },
@@ -205,7 +205,7 @@ const projects = [
     tech: ['React 19', 'Vite', 'Framer Motion', 'GSAP', 'CSS'],
     image: iplRetentionImage,
     github: 'https://github.com/m-manu619/ipl-2027-retention-simulator',
-    demo: null,
+    demo: 'https://ipl-2027-retention-simulator.vercel.app',
     categories: ['Frontend'],
     details: [
       'Dynamic salary cap tracking (Rs 120 Crore) with real-time budget depletion alerts.',
@@ -386,11 +386,11 @@ const experience = [
 ];
 
 const certifications = [
-  'AWS Solution Architect and DevOps | Micro Degree',
-  'Machine Learning Using Python | Inventeron Technologies',
-  'Goldman Sachs Excel Skills for Business Job Simulation | Forage',
-  'PwC Switzerland Power BI Job Simulation | Forage',
-  'Verizon Cloud Platform Job Simulation | Forage',
+  { label: 'AWS Solution Architect and DevOps | Micro Degree', type: 'cert' },
+  { label: 'Machine Learning Using Python | Inventeron Technologies', type: 'cert' },
+  { label: 'Goldman Sachs Excel Skills for Business | Forage', type: 'sim' },
+  { label: 'PwC Switzerland Power BI Job Simulation | Forage', type: 'sim' },
+  { label: 'Verizon Cloud Platform Job Simulation | Forage', type: 'sim' },
 ];
 
 const stats = [
@@ -683,10 +683,10 @@ function App() {
                 <p className="panel-kicker">Why I stand out</p>
                 <motion.ul className="check-list" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
                   {[
-                    'Strong blend of engineering execution and operational thinking',
-                    'Comfortable with both application work and infrastructure automation',
-                    'Focused on measurable improvements, not just implementation',
-                    'Professional presentation with practical project depth',
+                    'Delivered a 40% deployment speed improvement at Micro Degree through CI/CD pipeline automation',
+                    'Built 10+ end-to-end projects spanning full-stack, cloud infrastructure, and AI — all on GitHub',
+                    'Reduced candidate shortlisting effort by 50% with an NLP-powered AI resume screening tool',
+                    'Shipped a live product (IPL 2027 Simulator) running 10,000+ Monte Carlo paths client-side in under 800ms',
                   ].map((item) => (
                     <motion.li key={item} variants={staggerItem}>{item}</motion.li>
                   ))}
@@ -906,14 +906,21 @@ function App() {
               <span className="section-label"><span className="section-label-star">✦</span> Certifications</span>
               <h2>Continuous learning across cloud architecture, machine learning, and data analytics.</h2>
             </motion.div>
-            <motion.div variants={staggerContainer} className="cert-grid">
-              {certifications.map((cert) => (
-                <motion.article key={cert} variants={staggerItem} className="panel cert-card">
-                  <Award size={20} />
-                  <p>{cert}</p>
-                </motion.article>
-              ))}
-            </motion.div>
+            {['cert', 'sim'].map((type) => (
+              <div key={type}>
+                <h3 className="cert-group-label">
+                  {type === 'cert' ? 'Certifications' : 'Job Simulations'}
+                </h3>
+                <motion.div variants={staggerContainer} className="cert-grid">
+                  {certifications.filter((c) => c.type === type).map((cert) => (
+                    <motion.article key={cert.label} variants={staggerItem} className="panel cert-card">
+                      <Award size={20} />
+                      <p>{cert.label}</p>
+                    </motion.article>
+                  ))}
+                </motion.div>
+              </div>
+            ))}
           </motion.div>
         </section>
 
@@ -970,7 +977,7 @@ function App() {
       {/* ── Footer ── */}
       <footer className="site-footer">
         <div className="container footer-inner">
-          <span>© 2025 Manohar H. Built with React &amp; Vite.</span>
+          <span>© 2026 Manohar H. Built with React &amp; Vite.</span>
           <div className="footer-links">
             <a href="https://linkedin.com/in/manohar-h/" target="_blank" rel="noreferrer">LinkedIn</a>
             <a href="https://github.com/m-manu619" target="_blank" rel="noreferrer">GitHub</a>
