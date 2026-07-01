@@ -373,6 +373,9 @@ function App() {
   const handleFormChange = (e) =>
     setContactForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
+  const activeProjects = projects.filter((p) => !p.inProgress);
+  const workingProjects = projects.filter((p) => p.inProgress);
+
   return (
     <div className="site-shell">
       <motion.div className="scroll-progress" style={{ scaleX }} />
@@ -644,38 +647,80 @@ function App() {
               <span className="section-label"><span className="section-label-star">✦</span> Projects</span>
               <h2>End-to-end projects spanning AI automation, cloud infrastructure, and DevOps pipelines.</h2>
             </motion.div>
-            <div className="projects-grid">
-              {projects.map((project) => (
-                <motion.article key={project.title} variants={staggerItem} className="project-card">
-                  <a href={project.github} target="_blank" rel="noreferrer" className="project-visual" aria-label={`View ${project.title} on GitHub`}>
-                    <img src={project.image} alt={project.title} loading="lazy" decoding="async" />
-                    <div className="project-image-overlay">
-                      <span>View on GitHub <ExternalLink size={14} /></span>
-                    </div>
-                  </a>
-                  <div className="project-body">
-                    <p className={`panel-kicker ${project.inProgress ? 'kicker-in-progress' : ''}`}>
-                      {project.inProgress ? 'Currently working on' : 'Featured Project'}
-                    </p>
-                    <h3>{project.title}</h3>
-                    <p>{project.description}</p>
-                    <div className="impact-box">{project.impact}</div>
-                    <div className="tag-row">
-                      {project.tech.map((item) => <span key={item} className="tag">{item}</span>)}
-                    </div>
-                    <div className="project-actions">
-                      <a href={project.github} target="_blank" rel="noreferrer" className="button button-secondary">
-                        <Github size={16} /> View Code
+            {workingProjects.length > 0 && (
+              <div className="projects-subsection">
+                <h3 className="projects-subsection-title">Currently Working On</h3>
+                <div className="projects-grid">
+                  {workingProjects.map((project) => (
+                    <motion.article key={project.title} variants={staggerItem} className="project-card">
+                      <a href={project.github} target="_blank" rel="noreferrer" className="project-visual" aria-label={`View ${project.title} on GitHub`}>
+                        <img src={project.image} alt={project.title} loading="lazy" decoding="async" />
+                        <div className="project-image-overlay">
+                          <span>View on GitHub <ExternalLink size={14} /></span>
+                        </div>
                       </a>
-                      {project.demo && (
-                        <a href={project.demo} target="_blank" rel="noreferrer" className="button button-ghost">
-                          <ExternalLink size={16} /> Live Demo
+                      <div className="project-body">
+                        <p className={`panel-kicker ${project.inProgress ? 'kicker-in-progress' : ''}`}>
+                          {project.inProgress ? 'Currently working on' : 'Featured Project'}
+                        </p>
+                        <h3>{project.title}</h3>
+                        <p>{project.description}</p>
+                        <div className="impact-box">{project.impact}</div>
+                        <div className="tag-row">
+                          {project.tech.map((item) => <span key={item} className="tag">{item}</span>)}
+                        </div>
+                        <div className="project-actions">
+                          <a href={project.github} target="_blank" rel="noreferrer" className="button button-secondary">
+                            <Github size={16} /> View Code
+                          </a>
+                          {project.demo && (
+                            <a href={project.demo} target="_blank" rel="noreferrer" className="button button-ghost">
+                              <ExternalLink size={16} /> Live Demo
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </motion.article>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="projects-subsection">
+              <h3 className="projects-subsection-title">Featured Projects</h3>
+              <div className="projects-grid">
+                {activeProjects.map((project) => (
+                  <motion.article key={project.title} variants={staggerItem} className="project-card">
+                    <a href={project.github} target="_blank" rel="noreferrer" className="project-visual" aria-label={`View ${project.title} on GitHub`}>
+                      <img src={project.image} alt={project.title} loading="lazy" decoding="async" />
+                      <div className="project-image-overlay">
+                        <span>View on GitHub <ExternalLink size={14} /></span>
+                      </div>
+                    </a>
+                    <div className="project-body">
+                      <p className={`panel-kicker ${project.inProgress ? 'kicker-in-progress' : ''}`}>
+                        {project.inProgress ? 'Currently working on' : 'Featured Project'}
+                      </p>
+                      <h3>{project.title}</h3>
+                      <p>{project.description}</p>
+                      <div className="impact-box">{project.impact}</div>
+                      <div className="tag-row">
+                        {project.tech.map((item) => <span key={item} className="tag">{item}</span>)}
+                      </div>
+                      <div className="project-actions">
+                        <a href={project.github} target="_blank" rel="noreferrer" className="button button-secondary">
+                          <Github size={16} /> View Code
                         </a>
-                      )}
+                        {project.demo && (
+                          <a href={project.demo} target="_blank" rel="noreferrer" className="button button-ghost">
+                            <ExternalLink size={16} /> Live Demo
+                          </a>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </motion.article>
-              ))}
+                  </motion.article>
+                ))}
+              </div>
             </div>
           </motion.div>
         </section>

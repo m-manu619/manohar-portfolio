@@ -715,6 +715,31 @@ img { max-width: 100%; display: block; }
 }
 
 /* ── Projects ───────────────────────────────────────────────────────────────── */
+.projects-subsection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.projects-subsection:not(:first-of-type) {
+  margin-top: 3.5rem;
+}
+.projects-subsection-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.projects-subsection-title::after {
+  content: '';
+  flex-grow: 1;
+  height: 1px;
+  background: var(--line);
+}
 .projects-grid { display: grid; gap: 1.2rem; }
 .project-card {
   display: grid;
