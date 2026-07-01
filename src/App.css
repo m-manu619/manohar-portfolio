@@ -414,6 +414,9 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase; letter-spacing: 0.15em;
   font-size: 0.74rem; color: var(--accent); font-weight: 700;
 }
+.kicker-in-progress {
+  color: var(--gold);
+}
 .hero-card-main h2 { margin: 0.75rem 0 1rem; font-size: 1.5rem; line-height: 1.28; }
 .hero-points {
   margin: 0; padding-left: 1.1rem; color: var(--soft);

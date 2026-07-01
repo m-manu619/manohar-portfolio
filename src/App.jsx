@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useRef, useState } from 'react';
 import {
   AnimatePresence,
@@ -27,11 +28,18 @@ import {
 } from 'lucide-react';
 import './App.css';
 
-import aiResumeImage from './images/AI-Powered Resume Screening Tool.jpeg';
+import aiResumeToolImage from './images/ai_resume_screening_tool.png';
 import cloudFileImage from './images/Cloud File Management System.jpeg';
 import flaskCicdImage from './images/Flask App CICD Pipeline on AWS.jpeg';
 import terraformImage from './images/Terraform AWS Infrastructure.jpeg';
 import profilePhoto from './images/Manohar Photo.jpg';
+
+import iplRetentionImage from './images/ipl_retention_simulator.png';
+import viberentBookingImage from './images/viberent_booking_platform.png';
+import proCricketAuctionImage from './images/pro_cricket_auction_manager.png';
+import ipl2026Image from './images/ipl_2026_simulator.png';
+import jenkinsPipelineImage from './images/jenkins_pipeline.png';
+import fullstackReactExpressImage from './images/fullstack_react_express.png';
 
 import javaIcon from './images/icons8-java-48.png';
 import pythonIcon from './images/icons8-python-48.png';
@@ -170,13 +178,44 @@ const skills = [
 
 const projects = [
   {
-    title: 'AI-Powered Resume Screening Tool',
+    title: 'IPL 2027 Retention Simulator',
     description:
-      'Built an automated screening workflow using NLP and machine learning to speed up candidate shortlisting and improve recruiter efficiency.',
-    impact: 'Reduced shortlisting effort by 50% with scalable AWS-backed processing.',
-    tech: ['Python', 'AWS', 'NLP', 'Machine Learning', 'Scikit-learn'],
-    image: aiResumeImage,
-    github: 'https://github.com/m-manu619/AI-Powered-Resume-Screening-and-Job-Matching-Tool',
+      'Developed an interactive dashboard for the IPL 2027 mini-auction allowing users to plan squad retentions, manage purse balance, and export squad layouts.',
+    impact: 'Enables real-time roster building constraints and high-fidelity squad card exports.',
+    tech: ['React 19', 'Vite', 'Framer Motion', 'GSAP', 'CSS'],
+    image: iplRetentionImage,
+    github: 'https://github.com/m-manu619/ipl-2027-retention-simulator',
+    demo: null,
+  },
+  {
+    title: 'Pro Cricket Auction Manager',
+    description:
+      'Real-time multiplayer T20 squad mock auction application supporting live player bidding lobbies, synchronized WebSockets, and dynamic AI bidding franchises.',
+    impact: 'Under active development; features a low-latency concurrent bidding engine and automated AI opponents.',
+    tech: ['React', 'Spring Boot', 'WebSockets', 'MySQL', 'Concurrency'],
+    image: proCricketAuctionImage,
+    github: 'https://github.com/m-manu619/Pro_Cricket_Auction_Manager',
+    demo: null,
+    inProgress: true,
+  },
+  {
+    title: 'Viberent Booking Platform',
+    description:
+      'Full-stack rental property booking application featuring secure JWT authentication, interactive property catalogs, and transactional booking workflows.',
+    impact: 'Implements role-based access control and robust backend state validation.',
+    tech: ['React', 'Spring Boot', 'MySQL', 'JWT Auth', 'REST API'],
+    image: viberentBookingImage,
+    github: 'https://github.com/m-manu619/viberent-booking-platform',
+    demo: null,
+  },
+  {
+    title: 'AI-Powered Resume Screener & Job Matcher',
+    description:
+      'Full-stack semantic analysis tool parsing resume uploads, extracting technical skill categories, and computing semantic match scores against job profiles.',
+    impact: 'Speeds up candidate profiling with advanced NLP extraction models and cosine similarity scores.',
+    tech: ['FastAPI', 'React', 'Python', 'spaCy', 'Sentence Transformers'],
+    image: aiResumeToolImage,
+    github: 'https://github.com/m-manu619/ai-resume-screening-job-matching-tool',
     demo: null,
   },
   {
@@ -187,6 +226,16 @@ const projects = [
     tech: ['React', 'Spring Boot', 'AWS S3', 'IAM', 'Docker'],
     image: cloudFileImage,
     github: 'https://github.com/m-manu619/Cloud_File_Management_System',
+    demo: null,
+  },
+  {
+    title: 'IPL 2026 Simulator',
+    description:
+      'Sports analytics engine simulating matches, computing net run rates, and plotting playoff qualification probability trajectories.',
+    impact: 'Runs 10,000+ Monte Carlo seasonal paths locally inside the browser in under a second.',
+    tech: ['React', 'JavaScript', 'Framer Motion', 'Data Analytics'],
+    image: ipl2026Image,
+    github: 'https://github.com/m-manu619/ipl-2026-simulator',
     demo: null,
   },
   {
@@ -207,6 +256,26 @@ const projects = [
     tech: ['Terraform', 'AWS', 'IaC', 'DevOps', 'Automation'],
     image: terraformImage,
     github: 'https://github.com/m-manu619/terraform-aws-project',
+    demo: null,
+  },
+  {
+    title: 'Jenkins Declarative CI/CD Pipeline',
+    description:
+      'Standardized template automating multi-stage pipelines (Build, Test, SonarQube Lint, Docker Package, and Deploy) with containerized execution.',
+    impact: 'Minimizes release friction by automating build-validation stages with agent-based runners.',
+    tech: ['Jenkins', 'Docker', 'Groovy', 'CI/CD', 'Automation'],
+    image: jenkinsPipelineImage,
+    github: 'https://github.com/m-manu619/jenkins',
+    demo: null,
+  },
+  {
+    title: 'Full-Stack React Express Boilerplate',
+    description:
+      'Production-ready boilerplate combining a React frontend, an Express server, and Amazon DynamoDB for cloud document storage.',
+    impact: 'Provides a modular starting point for serverless and document-store application development.',
+    tech: ['React', 'Express', 'DynamoDB', 'AWS', 'REST API'],
+    image: fullstackReactExpressImage,
+    github: 'https://github.com/m-manu619/fullstack-react-express-app',
     demo: null,
   },
 ];
@@ -585,7 +654,9 @@ function App() {
                     </div>
                   </a>
                   <div className="project-body">
-                    <p className="panel-kicker">Featured Project</p>
+                    <p className={`panel-kicker ${project.inProgress ? 'kicker-in-progress' : ''}`}>
+                      {project.inProgress ? 'In Progress' : 'Featured Project'}
+                    </p>
                     <h3>{project.title}</h3>
                     <p>{project.description}</p>
                     <div className="impact-box">{project.impact}</div>
