@@ -655,7 +655,7 @@ function App() {
                   </a>
                   <div className="project-body">
                     <p className={`panel-kicker ${project.inProgress ? 'kicker-in-progress' : ''}`}>
-                      {project.inProgress ? 'In Progress' : 'Featured Project'}
+                      {project.inProgress ? 'Currently working on' : 'Featured Project'}
                     </p>
                     <h3>{project.title}</h3>
                     <p>{project.description}</p>
