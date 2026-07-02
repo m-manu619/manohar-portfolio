@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:wght@600;700&display=swap');
+/* Fonts are loaded via <link rel="preconnect"> + <link rel="stylesheet"> in
+   index.html instead of a render-blocking @import here. */
 
 /* ── Design tokens ─────────────────────────────────────────────────────────── */
 :root {
@@ -104,6 +105,19 @@ img { max-width: 100%; display: block; }
 @keyframes shimmer-scroll {
   0%   { background-position: 0% 50%; }
   100% { background-position: 200% 50%; }
+}
+
+/* CSS scroll-driven variant: runs on the compositor, no JS per frame.
+   Rendered only when CSS.supports('animation-timeline: scroll()') is true;
+   framer-motion spring bar is the fallback elsewhere. */
+.scroll-progress-css {
+  transform: scaleX(0);
+  animation: grow-progress linear;
+  animation-timeline: scroll();
+}
+@keyframes grow-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
 }
 
 /* ── Ambient glow orbs ─────────────────────────────────────────────────────── */
@@ -376,6 +390,22 @@ img { max-width: 100%; display: block; }
   filter: saturate(1.05) contrast(1.03);
   box-shadow: 0 20px 50px rgba(0,0,0,0.28);
 }
+.profile-frame-placeholder {
+  background: linear-gradient(160deg, rgba(16, 26, 46, 0.95), rgba(8, 14, 26, 0.95));
+  border: 1px dashed rgba(110, 231, 183, 0.4);
+  display: flex; align-items: center; justify-content: center;
+}
+.profile-placeholder-content {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0.8rem; padding: 1rem;
+  color: var(--accent); text-align: center;
+}
+.profile-placeholder-content svg { opacity: 0.85; }
+.profile-placeholder-title {
+  font-size: 0.9rem; font-weight: 600; letter-spacing: 0.05em;
+  color: var(--text);
+}
+.profile-placeholder-sub { font-size: 0.78rem; color: var(--muted); }
 
 /* ── Available badge ── */
 .profile-badge {
@@ -669,6 +699,14 @@ img { max-width: 100%; display: block; }
 }
 
 /* ── Skills ─────────────────────────────────────────────────────────────────── */
+.skill-legend {
+  display: flex; flex-wrap: wrap; gap: 1.4rem;
+  margin-top: -0.4rem;
+}
+.skill-legend-item {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  color: var(--muted); font-size: 0.82rem; font-weight: 600;
+}
 .skill-items { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1rem; }
 .skill-chip {
   position: relative; overflow: hidden;
@@ -965,8 +1003,24 @@ img { max-width: 100%; display: block; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  html { scroll-behavior: auto; }
+}
+
+/* ── Modern typography: prevent ragged multi-line headings ── */
+h1, h2, h3 { text-wrap: balance; }
+
+/* ── Misc utility classes (replacing former inline styles) ── */
+.overlay-cta { display: inline-flex; align-items: center; gap: 0.4rem; }
+.no-projects-msg {
+  text-align: center; color: var(--muted);
+  margin-top: 2rem; font-style: italic;
+}
+.form-error-msg {
+  display: inline-flex; margin-left: 1rem;
+  color: #ef4444; font-size: 0.88rem; font-weight: 600;
 }
 
 
@@ -1095,6 +1149,21 @@ img { max-width: 100%; display: block; }
   border-top: 1px solid var(--line);
   display: flex; justify-content: flex-end; gap: 1rem;
 }
+
+/* ── Architecture flow strip (modal) ── */
+.arch-flow {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 0.5rem; margin-bottom: 2rem;
+}
+.arch-step-wrap { display: inline-flex; align-items: center; gap: 0.5rem; }
+.arch-step {
+  padding: 0.5rem 0.9rem; border-radius: var(--radius-sm);
+  background: rgba(110, 231, 183, 0.06);
+  border: 1px solid rgba(110, 231, 183, 0.22);
+  color: var(--text); font-size: 0.85rem; font-weight: 600;
+  white-space: nowrap;
+}
+.arch-arrow { color: var(--accent); flex-shrink: 0; }
 
 /* ── Direct Contact Form States ── */
 .contact-success-box {
