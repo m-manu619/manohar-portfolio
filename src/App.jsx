@@ -37,7 +37,6 @@ import {
 import AnimatedCounter from './components/AnimatedCounter';
 import ProjectCard from './components/ProjectCard';
 import ProjectModal from './components/ProjectModal';
-import GravitySandbox from './components/GravitySandbox';
 import { ScrollReveal, ScrollZoom } from './components/ScrollAnimation';
 import useGitHubRepoCount from './hooks/useGitHubRepoCount';
 import resume from './images/Manohar_H_Resume.pdf';
@@ -492,18 +491,6 @@ function App() {
           </div>
         </section>
 
-        {/* ── Playground ── */}
-        <section id="playground" className="content-section">
-          <div className="container section-layout">
-            <ScrollReveal className="section-heading">
-              <span className="section-label"><span className="section-label-star">✦</span> Playground</span>
-              <h2>Fling, throw, and float my tech skills. Experiment with gravity physics.</h2>
-            </ScrollReveal>
-            <ScrollZoom>
-              <GravitySandbox />
-            </ScrollZoom>
-          </div>
-        </section>
 
         {/* ── Contact ── */}
         <section id="contact" className="content-section content-section-last section-light">
