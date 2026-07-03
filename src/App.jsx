@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 import './App.css';
 
-import { fadeUp, heroLeft, heroRight, staggerContainer, staggerItem } from './animations';
+import { fadeUp, heroLeft, heroRight } from './animations';
 import {
   GITHUB_USERNAME,
   certifications,
@@ -38,6 +38,7 @@ import AnimatedCounter from './components/AnimatedCounter';
 import ProjectCard from './components/ProjectCard';
 import ProjectModal from './components/ProjectModal';
 import GravitySandbox from './components/GravitySandbox';
+import { ScrollReveal, ScrollZoom } from './components/ScrollAnimation';
 import useGitHubRepoCount from './hooks/useGitHubRepoCount';
 import resume from './images/Manohar_H_Resume.pdf';
 
@@ -297,13 +298,13 @@ function App() {
 
         {/* ── About ── */}
         <section id="about" className="content-section section-accent">
-          <motion.div className="container section-layout" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-10%' }}>
-            <motion.div variants={fadeUp} className="section-heading">
+          <div className="container section-layout">
+            <ScrollReveal className="section-heading">
               <span className="section-label"><span className="section-label-star">✦</span> About</span>
               <h2>Software engineer bridging cloud infrastructure, backend systems, and DevOps automation.</h2>
-            </motion.div>
+            </ScrollReveal>
             <div className="about-grid">
-              <motion.article variants={staggerItem} className="panel panel-large">
+              <ScrollZoom className="panel panel-large">
                 <p>
                   I&apos;m a detail-oriented software engineer with experience spanning technical
                   support, cloud implementation, backend development, and delivery automation. I
@@ -320,30 +321,30 @@ function App() {
                   <div><GraduationCap size={18} /><span>B.E. in Computer Science</span></div>
                   <div><Briefcase size={18} /><span>Experience across cloud, support, and software delivery</span></div>
                 </div>
-              </motion.article>
+              </ScrollZoom>
 
-              <motion.aside variants={staggerItem} className="panel">
+              <ScrollZoom className="panel">
                 <p className="panel-kicker">Why I stand out</p>
-                <motion.ul className="check-list" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+                <ul className="check-list">
                   {standoutPoints.map((item) => (
-                    <motion.li key={item} variants={staggerItem}>{item}</motion.li>
+                    <li key={item}>{item}</li>
                   ))}
-                </motion.ul>
-              </motion.aside>
+                </ul>
+              </ScrollZoom>
             </div>
-          </motion.div>
+          </div>
         </section>
 
         {/* ── Experience ── */}
         <section id="experience" className="content-section">
-          <motion.div className="container section-layout" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-10%' }}>
-            <motion.div variants={fadeUp} className="section-heading">
+          <div className="container section-layout">
+            <ScrollReveal className="section-heading">
               <span className="section-label"><span className="section-label-star">✦</span> Experience</span>
               <h2>Two years of industry experience across AWS, backend engineering, and CI/CD delivery.</h2>
-            </motion.div>
+            </ScrollReveal>
             <div className="timeline">
               {experience.map((job) => (
-                <motion.article key={`${job.role}-${job.company}`} variants={staggerItem} className="timeline-item panel">
+                <ScrollZoom key={`${job.role}-${job.company}`} className="timeline-item panel">
                   <div className="timeline-top">
                     <div>
                       <p className="panel-kicker">{job.company}</p>
@@ -354,26 +355,26 @@ function App() {
                       <span>{job.location}</span>
                     </div>
                   </div>
-                  <motion.ul className="timeline-list" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+                  <ul className="timeline-list">
                     {job.highlights.map((highlight) => (
-                      <motion.li key={highlight} variants={staggerItem}>{highlight}</motion.li>
+                      <li key={highlight}>{highlight}</li>
                     ))}
-                  </motion.ul>
-                </motion.article>
+                  </ul>
+                </ScrollZoom>
               ))}
             </div>
-          </motion.div>
+          </div>
         </section>
 
         {/* ── Skills ── */}
         <section id="skills" className="content-section">
-          <motion.div className="container section-layout" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-10%' }}>
-            <motion.div variants={fadeUp} className="section-heading">
+          <div className="container section-layout">
+            <ScrollReveal className="section-heading">
               <span className="section-label"><span className="section-label-star">✦</span> Skills</span>
               <h2>A full-stack toolkit built for cloud-native development and reliable software delivery.</h2>
-            </motion.div>
+            </ScrollReveal>
 
-            <motion.div variants={fadeUp} className="skill-legend" aria-hidden="true">
+            <div className="skill-legend" aria-hidden="true">
               {skillLevels.map((label, idx) => (
                 <span key={label} className="skill-legend-item">
                   <span className="skill-dots">
@@ -384,15 +385,15 @@ function App() {
                   {label}
                 </span>
               ))}
-            </motion.div>
+            </div>
 
-            <motion.div variants={staggerContainer} className="skills-grid">
+            <div className="skills-grid">
               {skills.map((category) => (
-                <motion.article key={category.title} variants={staggerItem} className="panel skills-panel">
+                <ScrollZoom key={category.title} className="panel skills-panel">
                   <h3>{category.title}</h3>
-                  <motion.div className="skill-items" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+                  <div className="skill-items">
                     {category.items.map((skill) => (
-                      <motion.div key={skill.name} variants={staggerItem} className="skill-chip">
+                      <div key={skill.name} className="skill-chip">
                         {skill.icon ? (
                           <img src={skill.icon} alt={skill.name} />
                         ) : (
@@ -408,22 +409,22 @@ function App() {
                             ))}
                           </div>
                         </div>
-                      </motion.div>
+                      </div>
                     ))}
-                  </motion.div>
-                </motion.article>
+                  </div>
+                </ScrollZoom>
               ))}
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </section>
 
         {/* ── Projects ── */}
         <section id="projects" className="content-section">
-          <motion.div className="container section-layout" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-10%' }}>
-            <motion.div variants={fadeUp} className="section-heading">
+          <div className="container section-layout">
+            <ScrollReveal className="section-heading">
               <span className="section-label"><span className="section-label-star">✦</span> Projects</span>
               <h2>End-to-end projects spanning AI automation, cloud infrastructure, and DevOps pipelines.</h2>
-            </motion.div>
+            </ScrollReveal>
 
             <div className="filter-tabs">
               {projectCategories.map((cat) => (
@@ -463,55 +464,55 @@ function App() {
                 </div>
               </div>
             )}
-          </motion.div>
+          </div>
         </section>
 
         {/* ── Certifications ── */}
         <section id="certifications" className="content-section">
-          <motion.div className="container section-layout" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-10%' }}>
-            <motion.div variants={fadeUp} className="section-heading">
+          <div className="container section-layout">
+            <ScrollReveal className="section-heading">
               <span className="section-label"><span className="section-label-star">✦</span> Certifications</span>
               <h2>Continuous learning across cloud architecture, machine learning, and data analytics.</h2>
-            </motion.div>
+            </ScrollReveal>
             {['cert', 'sim'].map((type) => (
               <div key={type}>
                 <h3 className="cert-group-label">
                   {type === 'cert' ? 'Certifications' : 'Job Simulations'}
                 </h3>
-                <motion.div variants={staggerContainer} className="cert-grid">
+                <div className="cert-grid">
                   {certifications.filter((c) => c.type === type).map((cert) => (
-                    <motion.article key={cert.label} variants={staggerItem} className="panel cert-card">
+                    <ScrollZoom key={cert.label} className="panel cert-card">
                       <Award size={20} />
                       <p>{cert.label}</p>
-                    </motion.article>
+                    </ScrollZoom>
                   ))}
-                </motion.div>
+                </div>
               </div>
             ))}
-          </motion.div>
+          </div>
         </section>
 
         {/* ── Playground ── */}
         <section id="playground" className="content-section">
-          <motion.div className="container section-layout" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-10%' }}>
-            <motion.div variants={fadeUp} className="section-heading">
+          <div className="container section-layout">
+            <ScrollReveal className="section-heading">
               <span className="section-label"><span className="section-label-star">✦</span> Playground</span>
               <h2>Fling, throw, and float my tech skills. Experiment with gravity physics.</h2>
-            </motion.div>
-            <motion.div variants={staggerItem}>
+            </ScrollReveal>
+            <ScrollZoom>
               <GravitySandbox />
-            </motion.div>
-          </motion.div>
+            </ScrollZoom>
+          </div>
         </section>
 
         {/* ── Contact ── */}
         <section id="contact" className="content-section content-section-last section-light">
-          <motion.div className="container section-layout" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-10%' }}>
-            <motion.div variants={fadeUp} className="section-heading">
+          <div className="container section-layout">
+            <ScrollReveal className="section-heading">
               <span className="section-label"><span className="section-label-star">✦</span> Contact</span>
               <h2>Let&apos;s talk — I&apos;m actively looking for software, cloud, and DevOps roles.</h2>
-            </motion.div>
-            <motion.div variants={staggerItem} className="contact-band">
+            </ScrollReveal>
+            <ScrollZoom className="contact-band">
               <div>
                 <p>
                   I&apos;m currently open to full-time roles in software engineering, cloud, or
@@ -549,8 +550,8 @@ function App() {
                 <a href="https://linkedin.com/in/manohar-h/" target="_blank" rel="noreferrer" className="contact-link"><Linkedin size={18} /> LinkedIn Profile</a>
                 <a href="https://github.com/m-manu619" target="_blank" rel="noreferrer" className="contact-link"><Github size={18} /> GitHub Portfolio</a>
               </div>
-            </motion.div>
-          </motion.div>
+            </ScrollZoom>
+          </div>
         </section>
       </main>
 

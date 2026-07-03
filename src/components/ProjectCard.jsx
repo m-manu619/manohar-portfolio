@@ -1,10 +1,9 @@
-import { motion } from 'framer-motion';
 import { ExternalLink, Github, Sparkles } from 'lucide-react';
-import { staggerItem } from '../animations';
+import { ScrollZoom } from './ScrollAnimation';
 
 function ProjectCard({ project, onOpen }) {
   return (
-    <motion.article variants={staggerItem} className="project-card">
+    <ScrollZoom className="project-card">
       <button
         type="button"
         className="project-visual"
@@ -43,7 +42,7 @@ function ProjectCard({ project, onOpen }) {
           )}
         </div>
       </div>
-    </motion.article>
+    </ScrollZoom>
   );
 }
 
