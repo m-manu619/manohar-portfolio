@@ -37,6 +37,7 @@ import {
 import AnimatedCounter from './components/AnimatedCounter';
 import ProjectCard from './components/ProjectCard';
 import ProjectModal from './components/ProjectModal';
+import GravitySandbox from './components/GravitySandbox';
 import useGitHubRepoCount from './hooks/useGitHubRepoCount';
 import resume from './images/Manohar_H_Resume.pdf';
 
@@ -487,6 +488,19 @@ function App() {
                 </motion.div>
               </div>
             ))}
+          </motion.div>
+        </section>
+
+        {/* ── Playground ── */}
+        <section id="playground" className="content-section">
+          <motion.div className="container section-layout" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-10%' }}>
+            <motion.div variants={fadeUp} className="section-heading">
+              <span className="section-label"><span className="section-label-star">✦</span> Playground</span>
+              <h2>Fling, throw, and float my tech skills. Experiment with gravity physics.</h2>
+            </motion.div>
+            <motion.div variants={staggerItem}>
+              <GravitySandbox />
+            </motion.div>
           </motion.div>
         </section>
 

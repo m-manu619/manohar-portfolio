@@ -36,6 +36,7 @@ export const navigation = [
   { id: 'skills', label: 'Skills' },
   { id: 'projects', label: 'Projects' },
   { id: 'certifications', label: 'Certifications' },
+  { id: 'playground', label: 'Playground' },
   { id: 'contact', label: 'Contact' },
 ];
 
