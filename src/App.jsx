@@ -318,7 +318,7 @@ function App() {
                 </p>
                 <div className="info-list">
                   <div><MapPin size={18} /><span>Hassan, Karnataka, India</span></div>
-                  <div><GraduationCap size={18} /><span>B.E. in Computer Science</span></div>
+                  <div><GraduationCap size={18} /><span>B.E. Computer Science — Malnad College of Engineering, 2021</span></div>
                   <div><Briefcase size={18} /><span>Ex-Wipro · Spring Boot on the OSDU platform</span></div>
                 </div>
               </ScrollZoom>
@@ -340,7 +340,7 @@ function App() {
           <div className="container section-layout">
             <ScrollReveal className="section-heading">
               <span className="section-label"><span className="section-label-star">✦</span> Experience</span>
-              <h2>Two years of industry experience in Java, Spring Boot, and production support.</h2>
+              <h2>From enterprise Spring Boot at Wipro to shipping and running my own products.</h2>
             </ScrollReveal>
             <div className="timeline">
               {experience.map((job) => (

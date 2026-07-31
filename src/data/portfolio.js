@@ -65,6 +65,9 @@ export const skills = [
     title: 'Backend & Data',
     items: [
       { name: 'Spring Boot', icon: springbootIcon, level: 2 },
+      { name: 'Spring Data JPA', level: 2,         FallbackIcon: Database },
+      { name: 'Hibernate',   level: 2,             FallbackIcon: Database },
+      { name: 'Maven',       level: 2,             FallbackIcon: Server },
       { name: 'FastAPI',     level: 2,             FallbackIcon: Server },
       { name: 'Express.js',  level: 2,             FallbackIcon: Server },
       { name: 'MySQL',       icon: mysqlIcon,      level: 2 },
@@ -81,7 +84,7 @@ export const skills = [
       { name: 'Jenkins',   icon: jenkinsIcon,   level: 2 },
       { name: 'Terraform', icon: terraformIcon, level: 2 },
       { name: 'Git',       icon: gitIcon,       level: 3 },
-      { name: 'GitHub',    icon: githubIcon,    level: 3 },
+      { name: 'GitHub Actions', icon: githubIcon, level: 2 },
     ],
   },
   {
@@ -107,7 +110,7 @@ export const projects = [
     demo: 'https://ipl-2027-retention-simulator.vercel.app',
     categories: ['Frontend'],
     details: [
-      'Enforces squad size 18–25, a maximum of 8 overseas players, a minimum of 17 Indians, and the projected purse cap.',
+      'Enforces squad size 18–25, a maximum of 8 overseas players, a minimum of 17 Indians, and the Rs 130 Cr purse cap.',
       'Live violation detection with committed-versus-free purse tracking across all 10 franchises.',
       'High-fidelity HTML-to-image canvas generation for immediate social sharing.',
     ],
@@ -129,7 +132,7 @@ export const projects = [
     ],
   },
   {
-    title: 'Viberent Booking Platform',
+    title: 'ViBerent — Property Booking Platform',
     description:
       'Full-stack property booking platform on Java and Spring Boot, with a layered controller/service/repository backend and a React + Vite frontend.',
     impact: 'Date-overlap validation makes double-booking impossible rather than merely unlikely.',
@@ -146,20 +149,20 @@ export const projects = [
     ],
   },
   {
-    title: 'AI-Powered Resume Screener & Job Matcher',
+    title: 'AI Resume Screening & Job Matching Tool',
     description:
-      'Full-stack semantic analysis tool parsing resume uploads, extracting technical skill categories, and computing semantic match scores against job profiles.',
-    impact: 'Speeds up candidate profiling with advanced NLP extraction models and cosine similarity scores.',
-    tech: ['FastAPI', 'React', 'Python', 'spaCy', 'Sentence Transformers'],
+      'Batch resume screening service matching PDF and DOCX resumes against 14 engineering role profiles or a custom job description, with explainable score breakdowns.',
+    impact: 'Every score is explainable — it names the skills that matched and the ones that did not.',
+    tech: ['Python', 'FastAPI', 'React', 'NLP', 'OCR'],
     image: aiResumeToolImage,
     github: 'https://github.com/m-manu619/ai-resume-screening-job-matching-tool',
     demo: null,
     categories: ['AI & Analytics', 'Frontend', 'Backend'],
-    architecture: ['React Upload UI', 'FastAPI REST API', 'spaCy NLP Parser', 'Sentence Transformers', 'Match Score'],
+    architecture: ['React Upload UI', 'FastAPI REST API', 'Text Extraction + OCR', 'Weighted Scoring', 'Match Breakdown'],
     details: [
-      'NLP parsing using spaCy to extract technical skills and structural text from PDF resumes.',
-      'Semantic similarity matching scoring based on Hugging Face sentence transformers.',
-      'FastAPI backend exposing REST endpoints for file uploads and JSON match score responses.',
+      'Batch-screens PDF and DOCX resumes against 14 engineering role profiles or a custom job description, with multiple text-extraction fallbacks including OCR.',
+      'Six-component weighted scoring produces explainable breakdowns of matched and missing skills rather than a single opaque number.',
+      'API-key-protected endpoints, backed by a test suite and a 20x20 labelled accuracy benchmark.',
     ],
   },
   {
@@ -261,12 +264,23 @@ export const projects = [
 
 export const experience = [
   {
+    role: 'Independent Full-Stack Developer',
+    company: 'Self-Directed Projects',
+    location: 'Hassan, India',
+    period: 'July 2024 – Present',
+    highlights: [
+      'Design, ship, and operate full-stack applications end to end — data model, REST API, React frontend, and production deployment.',
+      'Run live products on Vercel across 100+ deployments, with uptime and error monitoring rather than deploy-and-forget.',
+      'Work across Java and Spring Boot on the backend and React with Vite on the frontend, plus the AWS, Docker, and CI/CD tooling around them.',
+    ],
+  },
+  {
     role: 'AWS Solution Architect and DevOps Intern',
     company: 'Micro Degree',
     location: 'Bengaluru, India',
     period: 'February 2024 – July 2024',
     highlights: [
-      'Designed and deployed AWS environments using EC2, S3, and IAM for practical cloud solutions.',
+      'Designed AWS environments across EC2, S3, and IAM, choosing configurations for scalability and cost rather than accepting defaults.',
       'Built CI/CD pipelines with Jenkins and Docker to cut manual deployment steps and shorten release cycles.',
       'Monitored and optimised cloud resources using CloudWatch to support stable operations.',
     ],
@@ -285,7 +299,8 @@ export const experience = [
 ];
 
 export const certifications = [
-  { label: 'AWS Solution Architect and DevOps | Micro Degree', type: 'cert' },
+  { label: 'AWS Certification | MicroDegree · Apr 2024', type: 'cert' },
+  { label: 'DevOps Certification | MicroDegree · Jun 2024', type: 'cert' },
   { label: 'Machine Learning Using Python | Inventeron Technologies', type: 'cert' },
   { label: 'Goldman Sachs Excel Skills for Business | Forage', type: 'sim' },
   { label: 'PwC Switzerland Power BI Job Simulation | Forage', type: 'sim' },
