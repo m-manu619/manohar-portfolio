@@ -32,9 +32,11 @@ function ProjectCard({ project, onOpen }) {
           <button type="button" className="button button-primary" onClick={() => onOpen(project)}>
             Details
           </button>
-          <a href={project.github} target="_blank" rel="noreferrer" className="button button-secondary">
-            <Github size={16} /> Code
-          </a>
+          {project.github && (
+            <a href={project.github} target="_blank" rel="noreferrer" className="button button-secondary">
+              <Github size={16} /> Code
+            </a>
+          )}
           {project.demo && (
             <a href={project.demo} target="_blank" rel="noreferrer" className="button button-ghost">
               <ExternalLink size={16} /> Demo

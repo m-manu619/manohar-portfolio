@@ -97,9 +97,11 @@ function ProjectModal({ project, onClose }) {
           )}
 
           <div className="modal-footer">
-            <a href={project.github} target="_blank" rel="noreferrer" className="button button-primary">
-              <Github size={16} /> View Repository
-            </a>
+            {project.github && (
+              <a href={project.github} target="_blank" rel="noreferrer" className="button button-primary">
+                <Github size={16} /> View Repository
+              </a>
+            )}
             {project.demo && (
               <a href={project.demo} target="_blank" rel="noreferrer" className="button button-secondary">
                 <ExternalLink size={16} /> Live Demo

@@ -68,7 +68,7 @@ function App() {
   const stats = [
     { value: '2+', label: 'Years of experience' },
     { value: `${repoCount ?? 12}`, label: 'Public GitHub repositories' },
-    { value: '40%', label: 'Deployment improvement delivered' },
+    { value: '100+', label: 'Production deployments' },
   ];
 
   useEffect(() => {
@@ -213,16 +213,16 @@ function App() {
             <motion.div className="hero-copy" variants={heroLeft} initial="hidden" animate="visible">
               <motion.div variants={fadeUp} className="eyebrow">
                 <Sparkles size={16} />
-                Cloud, backend, and DevOps-focused engineer
+                Java full stack developer
               </motion.div>
 
               <motion.h1 variants={fadeUp}>
-                I build cloud systems, reliable APIs, and CI/CD pipelines that ship confidently.
+                I build things that run in production.
               </motion.h1>
 
               <motion.p variants={fadeUp} className="hero-summary">
-                I design dependable software across cloud infrastructure, backend systems, and
-                deployment automation — focused on reliability, speed, and measurable impact.
+                Layered Spring Boot APIs, React frontends, and the deployment that puts them in
+                front of people — with monitoring and tests once they are live.
               </motion.p>
 
               <motion.div variants={fadeUp} className="hero-actions">
@@ -254,21 +254,21 @@ function App() {
                   <div className="profile-placeholder-content">
                     <Code size={48} />
                     <span className="profile-placeholder-title">&lt; MANOHAR.DEV &gt;</span>
-                    <span className="profile-placeholder-sub">Cloud & DevOps Engineering</span>
+                    <span className="profile-placeholder-sub">Java · Spring Boot · React</span>
                   </div>
                 </div>
                 <div className="profile-badge">
-                  <span>Available for software roles</span>
+                  <span>Open to Java full stack roles</span>
                 </div>
               </div>
 
               <div className="hero-card hero-card-main">
                 <p className="hero-card-label">Current focus</p>
-                <h2>Building production-minded cloud and application systems.</h2>
+                <h2>Building and running full-stack applications end to end.</h2>
                 <ul className="hero-points">
-                  <li>AWS environment design and deployment workflows</li>
-                  <li>Backend engineering with Java, Python, and Spring Boot</li>
-                  <li>CI/CD pipelines, Docker, and infrastructure automation</li>
+                  <li>Layered Spring Boot REST APIs with Spring Data JPA and Hibernate</li>
+                  <li>React and Vite frontends with route guards and a single API layer</li>
+                  <li>AWS, Docker, and CI/CD so features reach production reliably</li>
                 </ul>
               </div>
 
@@ -300,25 +300,26 @@ function App() {
           <div className="container section-layout">
             <ScrollReveal className="section-heading">
               <span className="section-label"><span className="section-label-star">✦</span> About</span>
-              <h2>Software engineer bridging cloud infrastructure, backend systems, and DevOps automation.</h2>
+              <h2>Java full stack developer who cares about code that stays readable.</h2>
             </ScrollReveal>
             <div className="about-grid">
               <ScrollZoom className="panel panel-large">
                 <p>
-                  I&apos;m a detail-oriented software engineer with experience spanning technical
-                  support, cloud implementation, backend development, and delivery automation. I
-                  enjoy solving real operational problems and turning complex workflows into simpler,
-                  more dependable systems.
+                  Most of my work sits in Spring Boot — designing REST APIs, modelling data with
+                  Spring Data JPA and Hibernate, and keeping the boundaries between controllers,
+                  services and repositories clean enough that whoever reads the code next can
+                  follow it.
                 </p>
                 <p>
-                  My background combines hands-on engineering with stakeholder collaboration, which
-                  helps me build solutions that are both technically sound and practical for teams to
-                  use and maintain.
+                  My first year of that was at Wipro on the OSDU platform, mostly maintaining a
+                  live system rather than greenfield work — which taught me why some code is easy to
+                  change and some isn&apos;t. On the frontend I work in React with Vite, and I treat
+                  deployment and monitoring as part of the job rather than someone else&apos;s.
                 </p>
                 <div className="info-list">
                   <div><MapPin size={18} /><span>Hassan, Karnataka, India</span></div>
                   <div><GraduationCap size={18} /><span>B.E. in Computer Science</span></div>
-                  <div><Briefcase size={18} /><span>Experience across cloud, support, and software delivery</span></div>
+                  <div><Briefcase size={18} /><span>Ex-Wipro · Spring Boot on the OSDU platform</span></div>
                 </div>
               </ScrollZoom>
 
@@ -339,7 +340,7 @@ function App() {
           <div className="container section-layout">
             <ScrollReveal className="section-heading">
               <span className="section-label"><span className="section-label-star">✦</span> Experience</span>
-              <h2>Two years of industry experience across AWS, backend engineering, and CI/CD delivery.</h2>
+              <h2>Two years of industry experience in Java, Spring Boot, and production support.</h2>
             </ScrollReveal>
             <div className="timeline">
               {experience.map((job) => (
@@ -370,7 +371,7 @@ function App() {
           <div className="container section-layout">
             <ScrollReveal className="section-heading">
               <span className="section-label"><span className="section-label-star">✦</span> Skills</span>
-              <h2>A full-stack toolkit built for cloud-native development and reliable software delivery.</h2>
+              <h2>A Java full stack toolkit, from Spring Boot APIs through to React frontends.</h2>
             </ScrollReveal>
 
             <div className="skill-legend" aria-hidden="true">
@@ -422,7 +423,7 @@ function App() {
           <div className="container section-layout">
             <ScrollReveal className="section-heading">
               <span className="section-label"><span className="section-label-star">✦</span> Projects</span>
-              <h2>End-to-end projects spanning AI automation, cloud infrastructure, and DevOps pipelines.</h2>
+              <h2>Full-stack projects — Spring Boot services, React frontends, and the tooling around them.</h2>
             </ScrollReveal>
 
             <div className="filter-tabs">
@@ -471,7 +472,7 @@ function App() {
           <div className="container section-layout">
             <ScrollReveal className="section-heading">
               <span className="section-label"><span className="section-label-star">✦</span> Certifications</span>
-              <h2>Continuous learning across cloud architecture, machine learning, and data analytics.</h2>
+              <h2>Continuous learning across cloud architecture, machine learning, and analytics.</h2>
             </ScrollReveal>
             {['cert', 'sim'].map((type) => (
               <div key={type}>
@@ -497,13 +498,13 @@ function App() {
           <div className="container section-layout">
             <ScrollReveal className="section-heading">
               <span className="section-label"><span className="section-label-star">✦</span> Contact</span>
-              <h2>Let&apos;s talk — I&apos;m actively looking for software, cloud, and DevOps roles.</h2>
+              <h2>Let&apos;s talk — I&apos;m open to Java full stack and backend roles.</h2>
             </ScrollReveal>
             <ScrollZoom className="contact-band">
               <div>
                 <p>
-                  I&apos;m currently open to full-time roles in software engineering, cloud, or
-                  DevOps. Drop me a message — I respond within 24 hours.
+                  I&apos;m currently open to full-time Java full stack and backend roles. Drop me
+                  a message — I respond within 24 hours.
                 </p>
                 {formStatus === 'success' ? (
                   <div className="contact-success-box">

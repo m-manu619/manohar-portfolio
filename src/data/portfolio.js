@@ -100,15 +100,15 @@ export const projects = [
     title: 'IPL 2027 Retention Simulator',
     description:
       'Developed an interactive dashboard for the IPL 2027 mini-auction allowing users to plan squad retentions, manage purse balance, and export squad layouts.',
-    impact: 'Enables real-time roster building constraints and high-fidelity squad card exports.',
+    impact: 'Enforces real retention constraints live, across all 10 franchises at once.',
     tech: ['React 19', 'Vite', 'Framer Motion', 'GSAP', 'CSS'],
     image: iplRetentionImage,
     github: 'https://github.com/m-manu619/ipl-2027-retention-simulator',
     demo: 'https://ipl-2027-retention-simulator.vercel.app',
     categories: ['Frontend'],
     details: [
-      'Dynamic salary cap tracking (Rs 120 Crore) with real-time budget depletion alerts.',
-      'Supports RTM (Right to Match) logic rules and maximum player retention limits.',
+      'Enforces squad size 18–25, a maximum of 8 overseas players, a minimum of 17 Indians, and the projected purse cap.',
+      'Live violation detection with committed-versus-free purse tracking across all 10 franchises.',
       'High-fidelity HTML-to-image canvas generation for immediate social sharing.',
     ],
   },
@@ -116,34 +116,33 @@ export const projects = [
     title: 'Pro Cricket Auction Manager',
     description:
       'Real-time multiplayer T20 squad mock auction application supporting live player bidding lobbies, synchronized WebSockets, and dynamic AI bidding franchises.',
-    impact: 'Under active development; features a low-latency concurrent bidding engine and automated AI opponents.',
-    tech: ['React', 'Spring Boot', 'WebSockets', 'MySQL', 'Concurrency'],
+    impact: 'Live in production across 100+ deployments, with uptime monitoring, error tracking and automated tests.',
+    tech: ['React', 'Vite', 'WebSockets', 'Cloudflare Workers', 'Concurrency'],
     image: proCricketAuctionImage,
-    github: 'https://github.com/m-manu619/Pro_Cricket_Auction_Manager',
-    demo: null,
-    inProgress: true,
+    github: null,
+    demo: 'https://pro-cricket-auction-manager-client.vercel.app',
     categories: ['Frontend', 'Backend'],
     details: [
-      'Synchronized WebSockets bidding room with active user lobbies and bidding state machines.',
-      'Algorithmic AI franchises bidding dynamically based on budget constraints and squad needs.',
-      'Responsive concurrency handling with optimistic locking and Spring Boot backend.',
+      'Solo play against 9 AI franchises, or real-time rooms for up to 10 players with host controls, seat assignment and shareable invites.',
+      'WebSocket-synchronised room state across connected clients, backed by a Cloudflare Workers player-pool service and authenticated accounts.',
+      'Also ships a 25-pick snake draft into a full T20 season with fixtures, playoffs and standings over a 450+ player pool.',
     ],
   },
   {
     title: 'Viberent Booking Platform',
     description:
-      'Full-stack rental property booking application featuring secure JWT authentication, interactive property catalogs, and transactional booking workflows.',
-    impact: 'Implements role-based access control and robust backend state validation.',
-    tech: ['React', 'Spring Boot', 'MySQL', 'JWT Auth', 'REST API'],
+      'Full-stack property booking platform on Java and Spring Boot, with a layered controller/service/repository backend and a React + Vite frontend.',
+    impact: 'Date-overlap validation makes double-booking impossible rather than merely unlikely.',
+    tech: ['Java 21', 'Spring Boot', 'Spring Data JPA', 'MySQL', 'React'],
     image: viberentBookingImage,
     github: 'https://github.com/m-manu619/viberent-booking-platform',
     demo: null,
     categories: ['Frontend', 'Backend'],
-    architecture: ['React SPA', 'Spring Boot REST API', 'JWT Auth Layer', 'MySQL Database'],
+    architecture: ['React + Vite SPA', 'Spring Boot REST API', 'Service Layer', 'JPA Repositories', 'MySQL'],
     details: [
-      'Role-based page authorization (Admin / Guest / Vendor) using secure JWT tokens.',
-      'Interactive booking calendars with real-time property availability validation.',
-      'Relational database schema in MySQL mapping bookings, properties, and users.',
+      '10 REST controllers over 11 services and 5 JPA repositories, with a dedicated DTO layer and constructor injection throughout.',
+      'Custom JPQL date-range query rejects reservations overlapping an existing pending or confirmed stay; ownership checks return 403 on cross-user access.',
+      'Guest and admin flows: property search, booking and cancellation, review CRUD, and a payment confirmation workflow.',
     ],
   },
   {
@@ -166,17 +165,17 @@ export const projects = [
   {
     title: 'Cloud File Management System',
     description:
-      'Created a secure cloud file platform with access control, dependable storage workflows, and a user-friendly interface for file operations.',
-    impact: 'Improved usability while supporting secure storage and efficient file handling.',
-    tech: ['React', 'Spring Boot', 'AWS S3', 'IAM', 'Docker'],
+      'Spring Boot REST service for file upload and download backed by Amazon S3 through the AWS SDK, containerised with Docker.',
+    impact: 'Clean service/controller separation over the AWS SDK v2 S3 client.',
+    tech: ['Java', 'Spring Boot', 'AWS SDK v2', 'Amazon S3', 'Docker'],
     image: cloudFileImage,
     github: 'https://github.com/m-manu619/Cloud_File_Management_System',
     demo: null,
     categories: ['Backend', 'DevOps & Cloud'],
     details: [
-      'Secure file upload/download pipelines interacting with AWS S3 storage buckets.',
-      'Role-based file permission access control policies via Amazon IAM.',
-      'Robust file metadata indexing using Amazon DynamoDB document storage.',
+      'Multipart upload and download endpoints storing objects in S3 with UUID keys.',
+      'Content-type resolution on retrieval via an S3 head-object lookup.',
+      'Containerised with Docker; configuration injected through Spring properties.',
     ],
   },
   {
@@ -230,17 +229,16 @@ export const projects = [
   {
     title: 'Jenkins Declarative CI/CD Pipeline',
     description:
-      'Standardized template automating multi-stage pipelines (Build, Test, SonarQube Lint, Docker Package, and Deploy) with containerized execution.',
-    impact: 'Minimizes release friction by automating build-validation stages with agent-based runners.',
+      'Reusable declarative Jenkinsfile template laying out a multi-stage pipeline: Setup, Build, Test, Package and Deploy.',
+    impact: 'A starting scaffold for standardising pipeline structure across projects.',
     tech: ['Jenkins', 'Docker', 'Groovy', 'CI/CD', 'Automation'],
     image: jenkinsPipelineImage,
     github: 'https://github.com/m-manu619/jenkins',
     demo: null,
     categories: ['DevOps & Cloud'],
     details: [
-      'Standardized declarative Jenkinsfile implementing unit testing, lint check, and packaging.',
-      'Integrated with Docker agents to isolate compilation and test runtime runtimes.',
-      'Automated slack hook notifications triggered upon pipeline failures or success status.',
+      'Declarative pipeline syntax with clearly separated Setup, Build, Test, Package and Deploy stages.',
+      'Structured as a template to be adapted per project rather than a project-specific build.',
     ],
   },
   {
@@ -269,7 +267,7 @@ export const experience = [
     period: 'February 2024 – July 2024',
     highlights: [
       'Designed and deployed AWS environments using EC2, S3, and IAM for practical cloud solutions.',
-      'Improved deployment speed by 40% through CI/CD pipelines built with Jenkins and Docker.',
+      'Built CI/CD pipelines with Jenkins and Docker to cut manual deployment steps and shorten release cycles.',
       'Monitored and optimised cloud resources using CloudWatch to support stable operations.',
     ],
   },
@@ -279,9 +277,9 @@ export const experience = [
     location: 'Bengaluru, India',
     period: 'February 2022 – March 2023',
     highlights: [
-      'Supported production systems and resolved technical issues to keep platform operations smooth.',
-      'Built Spring Boot applications that improved response time and overall system efficiency.',
-      'Worked across teams to identify root causes, improve reliability, and streamline workflows.',
+      'Developed and integrated Java-based solutions for the OSDU platform — an open data standard for the oil and gas industry — in Core Java (Java 8+) with Spring Boot.',
+      'Built and deployed RESTful services within a microservices architecture, designing for modularity as requirements shifted across releases.',
+      'Managed PostgreSQL databases and root-caused critical production issues, restoring stability without introducing regressions.',
     ],
   },
 ];
@@ -295,13 +293,13 @@ export const certifications = [
 ];
 
 export const standoutPoints = [
-  'Delivered a 40% deployment speed improvement at Micro Degree through CI/CD pipeline automation',
-  'Built 10+ end-to-end projects spanning full-stack, cloud infrastructure, and AI — all on GitHub',
-  'Reduced candidate shortlisting effort by 50% with an NLP-powered AI resume screening tool',
-  'Shipped a live product (IPL 2027 Simulator) running 10,000+ Monte Carlo paths client-side in under 800ms',
+  'A year of professional Spring Boot work at Wipro on the OSDU platform, in Core Java and microservices',
+  'Runs a live multiplayer product in production — 100+ deployments with uptime monitoring, error tracking and automated tests',
+  'Layered Spring Boot architecture with a DTO layer and a JPQL query that makes double-booking impossible',
+  '10+ documented public repositories spanning Java full-stack, cloud infrastructure and NLP',
 ];
 
 export const marqueeItems = [
-  'AWS', 'Docker', 'Terraform', 'Spring Boot', 'CI/CD', 'Java',
-  'Python', 'React', 'Jenkins', 'PostgreSQL', 'DevOps', 'GitHub Actions',
+  'Java', 'Spring Boot', 'Spring Data JPA', 'REST APIs', 'React', 'Vite',
+  'MySQL', 'PostgreSQL', 'AWS', 'Docker', 'Jenkins', 'CI/CD',
 ];
